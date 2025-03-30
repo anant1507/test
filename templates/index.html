@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Rakshak</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Eco-Rakshak</div>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#">Home</a></li>
+            <li><a href="#live-feed">Live Feed</a></li>
+            <li><a href="/feedback">Feedback</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero"></section>
+
+    <!-- Main Content -->
+    <div class="container main-container" id="live-feed">
+        <div class="row">
+            <!-- Left Column - Controls -->
+            <div class="col-md-4 controls-column">
+                <div class="controls-panel">
+                    <h4>Camera Controls</h4>
+                    <div class="control-group">
+                        <label>Camera preview:</label>
+                        <a id="cam-preview"><button class="btn btn-control">On/Off</button></a>
+                    </div>
+                    <div class="control-group">
+                        <label>Flip horizontal:</label>
+                        <a id="flip-horizontal"><button class="btn btn-control">On/Off</button></a>
+                    </div>
+                    <div class="control-group">
+                        <label>Detection model:</label>
+                        <a id="use-model"><button class="btn btn-control">On/Off</button></a>
+                    </div>
+                    <div class="control-group">
+                        <label>Exposure:</label>
+                        <a id="exposure-down"><button class="btn btn-control">-1</button></a>
+                        <a id="exposure-up"><button class="btn btn-control">+1</button></a>
+                    </div>
+                    <div class="control-group">
+                        <label>Contrast:</label>
+                        <a id="contrast-down"><button class="btn btn-control">-4</button></a>
+                        <a id="contrast-up"><button class="btn btn-control">+4</button></a>
+                    </div>
+                    <div class="control-group">
+                        <a id="reset-cam"><button class="btn btn-warning">Reset Camera</button></a>
+                    </div>
+                    <div class="control-group test-controls">
+                        <button id="random-fill" class="btn btn-orange">Fill Random Cylinder (+20%)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Camera Feed -->
+            <div class="col-md-8 camera-column">
+                <div class="camera-container">
+                    <h2>Live Camera Feed</h2>
+                    <div class="camera-feed">
+                        <img id="videoElement" src="{{ url_for('video_feed') }}" alt="Live Camera Feed">
+                        <div class="camera-loading" id="cameraLoading">
+                            <div class="spinner"></div>
+                            <p>Loading camera feed...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h2>Waste Information</h2>
+                    <div id="detection-info">
+                        <p><strong>Waste Detected:</strong> <span id="detected-object">None</span></p>
+                        <p><strong>Bin:</strong> <span id="bin-type">None</span></p>
+                        <h3 id="waste-category">Not Detected</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bin System -->
+        <div class="bin-system">
+            <div class="bins-container">
+                <div class="bin bin-green" id="greenBin">
+                    <div class="bin-icon">🗑️</div>
+                    <div class="bin-title">Biodegradable Waste</div>
+                    <div class="bin-capacity">
+                        <div class="bin-fill" id="greenFill"></div>
+                    </div>
+                    <div class="bin-value">Fill Level: <span id="greenValue">0</span>%</div>
+                    <div class="items-box" id="greenItems"></div>
+                </div>
+                
+                <div class="bin bin-blue" id="blueBin">
+                    <div class="bin-icon">🗑️</div>
+                    <div class="bin-title">Non-Biodegradable Waste</div>
+                    <div class="bin-capacity">
+                        <div class="bin-fill" id="blueFill"></div>
+                    </div>
+                    <div class="bin-value">Fill Level: <span id="blueValue">0</span>%</div>
+                    <div class="items-box" id="blueItems"></div>
+                </div>
+                
+                <div class="bin bin-red" id="redBin">
+                    <div class="bin-icon">🗑️</div>
+                    <div class="bin-title">Chemical Waste</div>
+                    <div class="bin-capacity">
+                        <div class="bin-fill" id="redFill"></div>
+                    </div>
+                    <div class="bin-value">Fill Level: <span id="redValue">0</span>%</div>
+                    <div class="items-box" id="redItems"></div>
+                </div>
+            </div>
+            
+            <div class="global-controls">
+                <button class="reset-btn" id="resetBinsBtn">Reset All</button>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <section class="services">
+            <div class="serv-content">
+                <h1>OUR SERVICES</h1>
+                <p class="intro">With Eco-Rakshak, our goal is to automate and optimize waste segregation. Using computer vision and machine learning, it classifies waste in real-time, ensuring proper disposal and promoting environmental sustainability.</p>
+            </div>
+            
+            <div class="services-container">
+                <div class="service-box">
+                    <div class="tag ai-innovation"></div><span>AI Innovation</span>
+                    <h2>CHATBOT</h2>
+                    <p>The chatbot in Eco Rakshak enhances user experience by providing real-time assistance and efficient waste management.</p>
+                </div>
+
+                <div class="service-box expertise">
+                    <div class="tag ai-expertise"></div><span>AI Expertise</span>
+                    <h2>INNOVATION</h2>
+                    <p>Eco Rakshak is an innovative solution, combining AI, IoT, and chatbots to revolutionize waste management.</p>
+                </div>
+
+                <div class="service-box">
+                    <div class="tag ai-learning"></div><span>AI Learning</span>
+                    <h2>ENVIRONMENT FRIENDLY</h2>
+                    <p>Eco Rakshak uses technology to reduce waste, promote recycling, conserve resources, and lower carbon footprints.</p>
+                </div>
+
+                <div class="service-box">
+                    <div class="tag ai-network"></div><span>AI Network</span>
+                    <h2>LEARNING</h2>
+                    <p>Eco Rakshak educates users on sustainable practices, fostering awareness, knowledge-sharing, and responsible environmental behavior.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Chatbot Button -->
+    <div class="chatbot-btn" id="chatbotBtn">
+        <div class="chatbot-icon">💬</div>
+    </div>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chat-header">
+            Eco-Rakshak Assistant
+            <button class="chat-close" id="chatCloseBtn">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                Hello! I'm your waste management assistant. How can I help you today?
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button id="chatSendBtn">↑</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Eco-Rakshak | Team ETHIX | All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./static/js/script.js"></script>
+</body>
+</html>

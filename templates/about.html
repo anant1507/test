@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Eco-Rakshak</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Eco-Rakshak</div>
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#live-feed">Live Feed</a></li>
+            <li><a href="/feedback">Feedback</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container about-container">
+        <h1>About Eco-Rakshak</h1>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Eco-Rakshak is an innovative waste management system that uses AI to automatically classify and sort waste into appropriate bins.</p>
+                <p>Our mission is to make waste management more efficient and environmentally friendly by leveraging cutting-edge technology.</p>
+                <p>The system was developed by Team ETHIX as part of our commitment to sustainable technology solutions.</p>
+                <h3>Key Features:</h3>
+                <ul>
+                    <li>Real-time waste detection and classification</li>
+                    <li>Automated bin fill-level monitoring</li>
+                    <li>Instant notifications when bins are full</li>
+                    <li>User-friendly interface with camera controls</li>
+                </ul>
+                <h3>Developers:</h3>
+                <ul>
+                    <li>Anantveer Singh - Backend Developer & AI Integration</li>
+                    <li>Amanjot Singh - Machine Learning & Data Processing</li>
+                    <li>Gaganjot Kaur - Frontend Developer & UI/UX Design</li>
+                    <li>Sakshi Gahlawat - Testing & Deployment</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Eco-Rakshak | Team ETHIX | All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar Toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const navLinks = document.getElementById('navLinks');
+            if (menuBtn && navLinks) {
+                menuBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+            }
+        });
+    </script>
+</body>
+</html>
